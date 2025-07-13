@@ -2,6 +2,7 @@
 #include "Utils.h"
 #include "nfd.h"
 #include "SimpleIni.h"
+#pragma execution_character_set("utf-8")
 
 namespace Utils {
     std::wstring utf8_to_utf16(const std::string& utf8) {
@@ -284,10 +285,8 @@ namespace Utils {
     }
 
     std::string GetAppDirectory() {
-        char buffer[MAX_PATH];
-        GetModuleFileNameA(nullptr, buffer, MAX_PATH);
-
-        std::filesystem::path exePath(buffer);
-        return exePath.parent_path().string();
+        wchar_t buffer[MAX_PATH];
+        DWORD length = GetModuleFileNameW(nullptr, buffer, MAX_PATH);
+        return std::filesystem::path(buffer).parent_path().string();
     }
 }

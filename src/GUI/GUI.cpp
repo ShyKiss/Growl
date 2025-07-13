@@ -5,6 +5,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "Tools/stb_image.h"
 #include "resource.h"
+#pragma execution_character_set("utf-8")
 
 namespace GUI {
     bool dragging = false;
@@ -278,8 +279,8 @@ namespace GUI {
         glfwDestroyWindow(window);
         glfwTerminate();
 
-        if (std::filesystem::exists(std::filesystem::u8path(Utils::GetAppDirectory()) / "growl_tmpfiles")) {
-            std::filesystem::remove_all(std::filesystem::u8path(Utils::GetAppDirectory()) / "growl_tmpfiles");
+        if (std::filesystem::exists(Utils::GetAppDirectory() + "\\growl_tmpfiles")) {
+            std::filesystem::remove_all(Utils::GetAppDirectory() + "\\growl_tmpfiles");
         }
     }
 }
